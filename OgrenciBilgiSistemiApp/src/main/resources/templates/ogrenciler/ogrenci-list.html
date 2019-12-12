@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>OBS</title>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="../bootstrap.min.css">
+</head>
+<body>
+	<div class="container">
+		<h1>Öğrenci Bilgi Sistemi</h1>
+		<hr>
+		<a th:href="@{/ogrenci/add}" class="btn btn-primary">Kayıt Ol</a>
+		<hr>
+		<table class="table table-bordered table-striped">
+
+			<thead class="thead-dark">
+				<tr>
+					<th>TC Kimlik NO</th>
+					<th>Ad</th>
+					<th>Soyad</th>
+					<th>Borc Tutarı</th>
+					<th>Borc Durumu</th>
+					<th>İşlemler</th>
+				</tr>
+
+			</thead>
+			<tbody>
+
+
+				<tr th:each="ogr : ${ogrenciList}">
+					<td th:text="${ogr.tcKimlikNo}" />
+					<td th:text="${ogr.firstName}" />
+					<td th:text="${ogr.lastName}" />
+					<td th:text="${ogr.borcTutari}" />
+					<td th:text="${ogr.borcDurumu}" />
+					<td><a class="btn btn-info btn-sm"
+						th:href="@{/ogrenci/update(ogrenciId=${ogr.id})}">Update</a> <a
+						class="btn btn-danger btn-sm"
+						onclick="if (!confirm('Deleting,sure?')) return false"
+						th:href="@{/ogrenci/delete(ogrenciId=${ogr.id})}">Delete</a></td>
+
+
+				</tr>
+
+
+
+			</tbody>
+
+
+
+
+		</table>
+	</div>
+</body>
+</html>
